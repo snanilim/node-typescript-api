@@ -1,0 +1,13 @@
+{
+  "name": "node-typescript-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/snanilim/node-typescript-api.git",
+  "author": "snanilim <snanilim@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "rxjs": "^6.4.0",
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.3.3333"
+  }
+}
