@@ -6,11 +6,12 @@
   "author": "snanilim <snanilim@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node -r tsconfig-paths/register src/server.ts"
+    "start": "DEBUG=log:* ts-node -r tsconfig-paths/register src/server.ts"
   },
   "dependencies": {
     "@types/node": "^11.9.6",
     "cors": "^2.8.5",
+    "debug": "^4.1.1",
     "express": "^4.16.4",
     "helmet": "^3.15.1",
     "morgan": "^1.9.1",

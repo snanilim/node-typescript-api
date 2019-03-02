@@ -5,7 +5,8 @@ import * as cors from 'cors';
 import * as morgan from 'morgan';
 import { AppConfig } from './app-config';
 import { MainRouter } from './router';
-
+const path = require('path');
+const log = require('debug')(`log: ${path.basename(__filename)}`);
 
 export class App{
     private readonly app: express.Express;
@@ -61,7 +62,7 @@ export class App{
         port = 3000;
 
         await this.listenAsync(port, args);
-        // this.logger.log(`Application listening to: ${port}`);
+        log('Server start on port %o', `3000`);
 
         return this.httpServer;
     }
