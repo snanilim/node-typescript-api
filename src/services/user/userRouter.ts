@@ -1,4 +1,4 @@
-import { MainRouter } from "../core/router";
+import { MainRouter } from "../../core/router";
 
 export class UserRouter extends MainRouter{
     constructor(){
