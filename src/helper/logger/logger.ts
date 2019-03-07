@@ -12,14 +12,11 @@ export class Logger implements LoggerInterface{
     ) { }
 
     log(message: any, context?: string){
-        console.log('log');
         const { logger } = Logger;
-
         logger && logger.log.call(logger, message, context || this.context);
     }
 
     static log(message: any, context?: string): void{
-        console.log('static log');
         this.printmessage('log', message, context);
     }
 

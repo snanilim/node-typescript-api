@@ -12,9 +12,12 @@ const log = require('debug')(`log: ${path.basename(__filename)}`);
 export class App{
     private readonly app: express.Express;
     private readonly httpServer: Server;
+    private readonly logger: Logger;
+
     constructor(
         private readonly config: AppConfig,
     ){
+        this.logger = new Logger(App.name);
         this.app = express();
         this.httpServer = createServer(this.app);
     }
@@ -44,6 +47,7 @@ export class App{
             const path = '/' + router.prefix;
             console.log('path', path);
             this.app.use(path, router.router);
+            this.logger.log(`Configer route ${path}`);
         })
     }
 
@@ -64,7 +68,7 @@ export class App{
 
         await this.listenAsync(port, args);
         log('Server start on port %o', `3000`);
-        Logger.log('server start');
+        this.logger.log('server start at port 3000');
 
         return this.httpServer;
     }
