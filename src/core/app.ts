@@ -34,7 +34,8 @@ export class App{
     cors(){
         this.app.use(cors());
     }
-    initRouters(routers: Array<any>):void{
+    
+    initModules(routers: Array<any>):void{
         routers.forEach(router => {
             this.config.addRouter(router);
         })

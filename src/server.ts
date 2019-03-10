@@ -1,6 +1,6 @@
 import {App} from './core/app'
 import { AppConfig } from './core/app-config';
-import services from './services/configureServices';
+import modules from './modules/configure.modules';
 
 
 async function bootstrap() {
@@ -8,7 +8,7 @@ async function bootstrap() {
     app.helmet();
     app.morgan();
     app.cors();
-    app.initRouters(services.allServices());
+    app.initModules(modules);
     await app.listen();
 }
 bootstrap();
