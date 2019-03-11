@@ -5,7 +5,7 @@ import * as cors from 'cors';
 import * as morgan from 'morgan';
 import { AppConfig } from './app-config';
 import { MainRouter } from './router';
-import { Logger } from '../helper/logger/logger';
+import { Logger } from '../../helper';
 const path = require('path');
 const log = require('debug')(`log: ${path.basename(__filename)}`);
 
@@ -35,7 +35,7 @@ export class App{
         this.app.use(cors());
     }
     
-    initModules(routers: Array<any>):void{
+    modulesInitializer(routers: Array<any>):void{
         routers.forEach(router => {
             this.config.addRouter(router);
         })
