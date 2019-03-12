@@ -1,18 +1,18 @@
-import { MainRouter } from "../../core/app/router";
-import { User, Users } from "./user.entity";
+import { MainRouter } from '../../core/app/main.router';
+import { User, Users } from './user.entity';
 
 export class UserRouter extends MainRouter{
     constructor(){
-        super();
+        super('user');
     }
 
     async get(req, res) {
         const users = await Users.find();
-        res.json({'users': users})
+        res.json({ users });
     }
 
     async post(req, res) {
-        User.name = "Shah Noor Alam Nilim";
+        User.name = 'Shah Noor Alam Nilim';
         User.isPublic = true;
 
         await User.save();
@@ -20,7 +20,6 @@ export class UserRouter extends MainRouter{
     }
 
     onInit(): void{
-        console.log('call onit');
         this.router.get('/', (req, res) => this.get(req, res));
         this.router.post('/', (req, res) => this.post(req, res));
     }

@@ -4,7 +4,7 @@ import * as helmet from 'helmet';
 import * as cors from 'cors';
 import * as morgan from 'morgan';
 import { AppConfig } from './app-config';
-import { MainRouter } from './router';
+import { MainRouter } from './main.router';
 import { Logger } from '../../helper';
 const path = require('path');
 const log = require('debug')(`log: ${path.basename(__filename)}`);
@@ -64,7 +64,6 @@ export class App{
 
     async listen(port?: number, ...args) {
         await this.init();
-        // console.log(await this.init());
         port = 3000;
 
         await this.listenAsync(port, args);
@@ -75,7 +74,6 @@ export class App{
     }
 
     protected async listenAsync(port?: number, ...args) {
-        // console.log('...args', ...args);
         return new Promise(resolve => {
             const server = this.httpServer.listen(port, ...args, () => resolve(server));
         });

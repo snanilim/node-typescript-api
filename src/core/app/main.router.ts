@@ -4,15 +4,15 @@ export abstract class MainRouter {
     readonly prefix: String;
     readonly router: Router;
 
-    constructor(){
-        this.prefix = this.buildRouterName();
+    constructor(name:string){
+        this.prefix = this.buildRouterName(name);
         this.router = Router();
         this.onInit();
     }
 
-    private buildRouterName():string{
+    private buildRouterName(name:string):string{
         console.log('call buildRouterName');
-        return 'user';
+        return name;
     }
 
     abstract onInit():void;
