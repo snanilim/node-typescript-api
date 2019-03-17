@@ -1,11 +1,29 @@
-import {ConnectionOptions, createConnection} from 'typeorm';
+import mongoose from 'mongoose';
+import config from 'config';
+import { Winston } from '../../helper';
 
-export async function dbInitializer(options:ConnectionOptions):Promise<any>{
-    const connecction = await createConnection(options)
-    .then(async connection => {
-        console.log('MongoDB Database connected');
-    })
-    .catch(error => console.log('error', error));
+const winston = new Winston();
+const logger = winston.logger('db.ts');
 
-    return connecction;
+mongoose.connection.on('open', (ref) => {
+    logger.info('Mongodb Connected Succesfully');
+});
+
+mongoose.connection.on('error', (err) => {
+    logger.error(`MongoDB Connection was faield: ${err.message}`);
+    process.exit(-1);
+});
+
+if (config.util.getEnv('NODE_ENV') === 'development') {
+    mongoose.set('debug', true);
 }
+
+export function connect(){
+    console.log('config', config.get('mongo_uri'));
+    // mongoose.connect(config.get('mongo_uri'), {
+    //     keepAlive: 1,
+    //     useNewUrlParser: true,
+    // });
+    // return mongoose.connection;
+}
+// export default connect;

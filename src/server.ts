@@ -1,14 +1,10 @@
 import 'reflect-metadata';
-import { App, dbInitializer } from './core'
-import { dbConfig } from './config';
+import { App, connect } from './core';
 import { AppConfig } from './core/app/app-config';
 import routes from './modules/routes';
 
 async function bootstrap() {
-    await dbInitializer({
-        ...dbConfig,
-        entities: [__dirname + '/**/*.entity{.ts,.js}']
-    });
+    connect();
 
     const app = new App(new AppConfig);
     app.helmet();
