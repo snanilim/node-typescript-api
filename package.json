@@ -15,6 +15,7 @@
     "config": "^3.0.1",
     "cors": "^2.8.5",
     "debug": "^4.1.1",
+    "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "helmet": "^3.15.1",
     "jsonwebtoken": "^8.5.0",
@@ -30,6 +31,7 @@
     "winston-daily-rotate-file": "^3.8.0"
   },
   "devDependencies": {
+    "@types/config": "^0.0.34",
     "ts-node": "^8.0.2",
     "tsconfig-paths": "^3.8.0",
     "tslint": "^5.13.1"

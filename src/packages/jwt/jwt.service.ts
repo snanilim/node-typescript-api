@@ -1,6 +1,6 @@
 import { SignOptions, sign, verify } from 'jsonwebtoken';
 import { JwtOptions } from './jwt-options.interface';
-import { jwtConfig } from '../../config/jwt.config';
+import { jwtConfig } from '../../configer/jwt.config';
 
 export class JwtService{
     private static instance: JwtService;

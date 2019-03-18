@@ -1,11 +1,18 @@
+import * as dotenv from 'dotenv';
+dotenv.config();
+import * as config from 'config';
 import 'reflect-metadata';
-import { App, connect } from './core';
+import { App, dbInitializer } from './core';
+import { dbConfig } from './configer';
 import { AppConfig } from './core/app/app-config';
 import routes from './modules/routes';
-connect;
+
 async function bootstrap() {
-    
-    console.log('call next');
+    const port = config.get('port');
+    console.log('port', port);
+
+    await dbInitializer();
+
     const app = new App(new AppConfig);
     app.helmet();
     app.morgan();
