@@ -20,8 +20,8 @@ export class Logger implements LoggerInterface{
         this.printmessage('log', message, context);
     }
 
-    private static printmessage(title:string, message:any, context?:string): void{
-        if(context === undefined){
+    private static printmessage(title: string, message: any, context?: string): void{
+        if (context === undefined){
             context = '---';
         }
         process.stdout.write(`${color.green(title)}: `);
@@ -29,6 +29,5 @@ export class Logger implements LoggerInterface{
         process.stdout.write(`${color.gray(new Date(Date.now()).toLocaleTimeString())}  `);
         process.stdout.write(`${message}   `);
         process.stdout.write('\n');
-  
     }
-} 
+}
