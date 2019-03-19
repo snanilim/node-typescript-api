@@ -6,12 +6,13 @@ export class UserRouter extends MainRouter{
         super('user');
     }
 
-    async get(req, res) {
+    async get(req, res, next) {
+        throw new Error();
         const users = await Users.find();
         res.json({ users });
     }
 
-    async post(req, res) {
+    async post(req, res, next) {
         User.name = 'Shah Noor Alam Nilim';
         User.isPublic = true;
 
@@ -20,7 +21,7 @@ export class UserRouter extends MainRouter{
     }
 
     onInit(): void{
-        this.router.get('/', (req, res) => this.get(req, res));
-        this.router.post('/', (req, res) => this.post(req, res));
+        this.router.get('/', (req, res, next) => this.get(req, res, next));
+        this.router.post('/', (req, res, next) => this.post(req, res, next));
     }
 }

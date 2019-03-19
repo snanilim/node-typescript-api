@@ -1,7 +1,7 @@
 export class AppConfig {
     private routers: any[] = [];
 
-    addRouter(router: any):void {
+    addRouter(router: any): void {
         this.routers.push(router);
     }
 

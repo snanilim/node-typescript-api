@@ -6,8 +6,6 @@ import * as morgan from 'morgan';
 import { AppConfig } from './app-config';
 import { MainRouter } from './main.router';
 import { Logger } from '../../helper';
-const path = require('path');
-const log = require('debug')(`log: ${path.basename(__filename)}`);
 
 export class App{
     private readonly app: express.Express;
@@ -34,29 +32,32 @@ export class App{
     cors(){
         this.app.use(cors());
     }
-    
-    modulesInitializer(routers: Array<any>):void{
+
+    modulesInitializer(routers: Array<any>): void{
         routers.forEach(router => {
             this.config.addRouter(router);
-        })
+        });
     }
 
     async registerRoute(){
-        console.log('registerRoute');
         const routers = this.config.getRouter();
-        routers.forEach((router:MainRouter) => {
+        routers.forEach((router: MainRouter) => {
             const path = '/' + router.prefix;
-            console.log('path', path);
             this.app.use(path, router.router);
             this.logger.log(`Configer route ${path}`);
-        })
+        });
     }
 
     async init(): Promise<this>{
         await this.registerRoute();
 
+
+        this.app.use((err, req, res, next) => {
+            console.log('found error -----------');
+        });
+
         this.app.use((req, res, next) => {
-            console.log('not found');
+            console.log('not found 2');
         });
 
         return this;
@@ -67,7 +68,6 @@ export class App{
         port = 3000;
 
         await this.listenAsync(port, args);
-        log('Server start on port %o', `3000`);
         this.logger.log('server start at port 3000');
 
         return this.httpServer;
