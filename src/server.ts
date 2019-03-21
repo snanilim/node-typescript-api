@@ -9,12 +9,9 @@ import routes from './modules/routes';
 
 async function bootstrap() {
 
-    await dbInitializer();
+    const app = new App(new AppConfig());
+    app.useControllers(routes);
 
-    const app = new App(new AppConfig);
-    app.helmet();
-    // app.morgan();
-    app.modulesInitializer(routes);
     await app.listen();
 }
 bootstrap();

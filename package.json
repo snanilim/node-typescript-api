@@ -1,12 +1,12 @@
 {
   "name": "node-typescript-api",
   "version": "1.0.0",
-  "main": "index.js",
   "repository": "https://github.com/snanilim/node-typescript-api.git",
   "author": "snanilim <snanilim@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node -r tsconfig-paths/register src/server.ts"
+    "start": "ts-node -r tsconfig-paths/register src/server.ts",
+    "start:dev": "nodemon"
   },
   "dependencies": {
     "@types/jsonwebtoken": "^8.3.2",

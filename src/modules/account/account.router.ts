@@ -1,7 +1,7 @@
-import { MainRouter } from '../../core/app/main.router';
+import { Controller } from '../../core/app/main.router';
 import { JwtService } from '../../packages/jwt/jwt.service';
 
-export class AccountRouter extends MainRouter{
+export class AccountRouter extends Controller{
     private readonly jwtService: JwtService;
     constructor(){
         super('account');

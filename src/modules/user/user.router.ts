@@ -1,12 +1,17 @@
-import { MainRouter } from '../../core/app/main.router';
+import { Controller } from '../../core/app/main.router';
 import { User, Users } from './user.entity';
 
-export class UserRouter extends MainRouter{
+export class UserRouter extends Controller{
     constructor(){
         super('user');
     }
 
     async get(req, res, next) {
+        try {
+            throw new Error();
+        } catch (error) {
+            throw new Error();
+        }
         throw new Error();
         const users = await Users.find();
         res.json({ users });
