@@ -6,7 +6,7 @@ import {
 } from '../../helper/utils/shared.utils';
 import { Subscriber } from 'rxjs';
 
-export abstract class Controller {
+export abstract class MainRouter {
   readonly prefix: string;
   readonly router: Router;
 

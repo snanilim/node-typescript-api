@@ -1,7 +1,7 @@
-import { Controller } from '../../core/app/main.router';
+import { MainRouter } from '../../core/app/main.router';
 import { User, Users } from './user.entity';
 
-export class UserRouter extends Controller{
+export class UserRouter extends MainRouter{
     constructor(){
         super('user');
     }

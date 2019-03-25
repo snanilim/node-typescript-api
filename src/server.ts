@@ -8,10 +8,14 @@ import { AppConfig } from './core/app/app-config';
 import routes from './modules/routes';
 
 async function bootstrap() {
+    await dbInitializer();
 
     const app = new App(new AppConfig());
-    app.useControllers(routes);
-
+    app.helmet();
+    app.morgan();
+    app.cors();
+    app.morgan();
+    app.modulesInitializer(routes);
     await app.listen();
 }
 bootstrap();

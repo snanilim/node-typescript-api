@@ -4,7 +4,7 @@ import * as helmet from 'helmet';
 import * as cors from 'cors';
 import * as morgan from 'morgan';
 import { AppConfig } from './app-config';
-import { Controller } from './main.router';
+import { MainRouter } from './main.router';
 import { Logger } from '../../helper';
 import {
     validatePath,
@@ -13,7 +13,7 @@ import {
     isFunction,
   } from '../../helper/utils/shared.utils';
 
-export class App{
+export class App {
     private readonly app: express.Express;
     private readonly httpServer: Server;
     private readonly logger: Logger;
@@ -39,48 +39,23 @@ export class App{
         this.app.use(cors());
     }
 
-    useControllers(
-        controllers: Array<Controller> | Array<FunctionConstructor>,
-      ): void;
-
-      useControllers(controllers: Array<any>): void {
-        controllers.forEach(controller => {
-          this.config.addController(controller);
+    modulesInitializer(routers: Array<any>): void{
+        routers.forEach(router => {
+            this.config.addRouter(router);
         });
-      }
+    }
 
-    // modulesInitializer(routers: Array<any>): void{
-    //     routers.forEach(router => {
-    //         this.config.addRouter(router);
-    //     });
-    // }
-
-    // async registerRoute(){
-    //     const routers = this.config.getRouter();
-    //     routers.forEach((router: Controller) => {
-    //         const path = '/' + router.prefix;
-    //         this.app.use(path, router.router);
-    //         this.logger.log(`Configer route ${path}`);
-    //     });
-    // }
-
-    protected async registerRouter() {
-        const prefix = 'api/v1';
-        const basePath = prefix ? validatePath(prefix) : '';
-        const controllers = this.config.getController();
-        const useControllers = isEmpty(controllers);
-        if (!useControllers) {
-          controllers.forEach((controller: Controller) => {
-            const path = basePath + controller.prefix;
-            this.app.use(path, controller.router);
-            this.logger.log(`Configure ${path}`);
-          });
-        }
+    async registerRouter(){
+        const routers = this.config.getRouter();
+        routers.forEach((router: MainRouter) => {
+            const path = '/' + router.prefix;
+            this.app.use(path, router.router);
+            this.logger.log(`Configer route ${path}`);
+        });
     }
 
     async init(): Promise<this>{
         await this.registerRouter();
-
 
         this.app.use((err, req, res, next) => {
             console.log('found error -----------');
