@@ -57,13 +57,8 @@ export class App {
     async init(): Promise<this>{
         await this.registerRouter();
 
-        this.app.use((err, req, res, next) => {
-            console.log('found error -----------');
-        });
-
-        this.app.use((req, res, next) => {
-            console.log('not found 2');
-        });
+        this.app.use(error.notFound);
+        this.app.use(error.errorHandler);
 
         return this;
     }

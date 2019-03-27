@@ -7,7 +7,7 @@ export const dbInitializer = () => {
     const winstonInit = new Winston();
     const winston = winstonInit.logger('db.ts');
     const mongo_uri = config.get('mongo_uri');
-    const logger = new Logger('db.ts');
+    const logger = new Logger('DB');
 
     mongoose.connect(mongo_uri, { keepAlive: 1, useNewUrlParser: true, });
 

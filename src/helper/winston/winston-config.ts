@@ -1,6 +1,6 @@
 /* tslint:disable:no-var-requires */
-import { format } from 'winston';
-import 'winston-daily-rotate-file';
+const { createLogger, format, transports } = require('winston');
+require('winston-daily-rotate-file');
 
 export const commonInfo = () => {
     const info = {
@@ -42,6 +42,6 @@ export const formatInfo = (fileName) => {
         format.timestamp({
             format: 'YYYY-MM-DD HH:mm:ss',
         }),
-        format.json({ replacer: (info: any) => `${info.ms} ${info.level} ${info.timestamp} [${info.label}]: ${info.message}` }),
+        format.json(info => `${info.ms} ${info.level} ${info.timestamp} [${info.label}]: ${info.message}`),
     );
 };
