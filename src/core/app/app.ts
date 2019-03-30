@@ -5,7 +5,7 @@ import * as cors from 'cors';
 import * as morgan from 'morgan';
 import { AppConfig } from './app-config';
 import { MainRouter } from './main.router';
-import { Logger } from '../../helper';
+import { Logger, notFound, errorHandler } from '../../helper';
 import {
     validatePath,
     isEmpty,
@@ -39,26 +39,32 @@ export class App {
         this.app.use(cors());
     }
 
+    apiPrefix(prefix: string){
+        this.config.setApiPrefix(prefix);
+    }
+
     modulesInitializer(routers: Array<any>): void{
         routers.forEach(router => {
-            this.config.addRouter(router);
+            this.config.setRouter(router);
         });
     }
 
     async registerRouter(){
         const routers = this.config.getRouter();
+        const getPrefix = this.config.getApiPrefix();
+        const prefix = validatePath(getPrefix);
         routers.forEach((router: MainRouter) => {
-            const path = '/' + router.prefix;
+            const path = prefix + router.prefix;
             this.app.use(path, router.router);
-            this.logger.log(`Configer route ${path}`);
+            this.logger.log(`Configer service ${path}`);
         });
     }
 
     async init(): Promise<this>{
         await this.registerRouter();
 
-        this.app.use(error.notFound);
-        this.app.use(error.errorHandler);
+        this.app.use(notFound);
+        this.app.use(errorHandler);
 
         return this;
     }

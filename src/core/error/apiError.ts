@@ -1,11 +1,14 @@
 class ErrorExtend extends Error {
+    error?: any;
+    status: number;
+    isPublic: boolean;
     constructor({
-        message, errors, status, isPublic, stack,
+        message, error, status, isPublic, stack,
     }) {
         super(message);
         this.name = this.constructor.name;
         this.message = message;
-        this.errors = errors;
+        this.error = error;
         this.status = status;
         this.isPublic = isPublic;
         this.stack = stack;
@@ -15,13 +18,13 @@ class ErrorExtend extends Error {
 class APIError extends ErrorExtend {
     constructor({
         message,
-        errors,
+        error = undefined,
         status,
         isPublic = false,
-        stack,
+        stack = undefined,
     }) {
         super({
-            message, errors, status, isPublic, stack,
+            message, error, status, isPublic, stack,
         });
     }
 }
