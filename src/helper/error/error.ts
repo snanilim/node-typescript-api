@@ -2,7 +2,7 @@ import * as config from 'config';
 import { Winston, Logger } from '../../helper';
 import { resEnd } from '../utils/logger.util';
 import APIError from '../../core/error/apiError';
-import { constMsg } from '../utils/constMsg.util';
+import { constMsg } from '../utils/const-msg.util';
 
 const handeler = (err, req, res, next) => {
     const logger = new Logger('Error');

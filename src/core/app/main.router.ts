@@ -20,7 +20,7 @@ export abstract class MainRouter {
     name =
       name && isString(name)
         ? name
-        : this.constructor.name.replace(/controller/gi, '');
+        : this.constructor.name.replace(/router/gi, '');
     if (name) return validatePath(name.toLocaleLowerCase());
     return;
   }

@@ -52,9 +52,9 @@ export class App {
     async registerRouter(){
         const routers = this.config.getRouter();
         const getPrefix = this.config.getApiPrefix();
-        const prefix = validatePath(getPrefix);
+        const apiPrefix = validatePath(getPrefix);
         routers.forEach((router: MainRouter) => {
-            const path = prefix + router.prefix;
+            const path = apiPrefix + router.prefix;
             this.app.use(path, router.router);
             this.logger.log(`Configer service ${path}`);
         });
