@@ -7,7 +7,8 @@ export class UserRouter extends MainRouter{
     }
 
     onInit(): void{
-        this.router.get('/', (req, res, next) => get(req, res, next));
-        this.router.post('/', (req, res, next) => post(req, res, next));
+        this.router.route('/')
+        .get(get)
+        .post(post);
     }
 }

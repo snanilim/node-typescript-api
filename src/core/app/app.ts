@@ -3,6 +3,7 @@ import * as express from 'express';
 import * as helmet from 'helmet';
 import * as cors from 'cors';
 import * as morgan from 'morgan';
+import * as bodyParser from 'body-parser';
 import { AppConfig } from './app-config';
 import { MainRouter } from './main.router';
 import { Logger, notFound, errorHandler } from '../../helper';
@@ -26,12 +27,22 @@ export class App {
         this.httpServer = createServer(this.app);
     }
 
+    bodyParser(){
+        const parserList = {
+            jsonParser: bodyParser.json(),
+            urlencodedParser: bodyParser.urlencoded({ extended: false })
+        };
+        Object.keys(parserList).forEach( parser => {
+            this.app.use(parserList[parser]);
+        });
+    }
+
     helmet(){
         this.app.use(helmet());
     }
 
     morgan(){
-        this.app.use(morgan('combined'));
+        // this.app.use(morgan('combined'));
         this.app.use(morgan('dev'));
     }
 

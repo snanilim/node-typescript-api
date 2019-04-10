@@ -11,8 +11,8 @@ async function bootstrap() {
     await dbInitializer();
 
     const app = new App(new AppConfig());
+    app.bodyParser();
     app.helmet();
-    app.morgan();
     app.cors();
     app.morgan();
     app.apiPrefix(`${config.get('version')}/api`);

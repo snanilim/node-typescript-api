@@ -1,14 +1,8 @@
-import { User, Users } from './user.entity';
+import { User, Users } from './user.model';
 
 export const get = async (req, res, next) => {
-    try {
-        throw new Error();
-    } catch (error) {
-        throw new Error();
-    }
-    throw new Error();
-    const users = await Users.find();
-    res.json({ users });
+    console.log('user call');
+    res.json({ user: 'users' });
 };
 
 export const post = async (req, res, next) => {
