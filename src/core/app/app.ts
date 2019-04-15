@@ -6,13 +6,15 @@ import * as morgan from 'morgan';
 import * as bodyParser from 'body-parser';
 import { AppConfig } from './app-config';
 import { MainRouter } from './main.router';
-import { Logger, notFound, errorHandler } from '../../helper';
 import {
+    Logger,
+    notFound,
+    errorHandler,
     validatePath,
     isEmpty,
     isConstructor,
     isFunction,
-  } from '../../helper/utils/shared.utils';
+  } from '../../helper';
 
 export class App {
     private readonly app: express.Express;

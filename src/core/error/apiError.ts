@@ -15,7 +15,7 @@ class ErrorExtend extends Error {
     }
 }
 
-class APIError extends ErrorExtend {
+export class APIError extends ErrorExtend {
     constructor({
         message,
         error = undefined,
@@ -28,5 +28,3 @@ class APIError extends ErrorExtend {
         });
     }
 }
-
-export default APIError;

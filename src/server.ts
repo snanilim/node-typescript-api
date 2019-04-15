@@ -5,7 +5,7 @@ import 'reflect-metadata';
 import { App, dbInitializer } from './core';
 import { dbConfig } from './configer';
 import { AppConfig } from './core/app/app-config';
-import routes from './services/routes';
+import { routes } from './services/routes';
 
 async function bootstrap() {
     await dbInitializer();

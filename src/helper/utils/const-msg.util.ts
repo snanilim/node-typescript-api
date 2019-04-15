@@ -14,5 +14,5 @@ export const constMsg = Object.freeze({
     CONFLICT_CODE: 409,
     EMAIL_IS_REQUIRED: 'A Email is required for generate token',
     EMAIL_EXIST: 'Email already exist',
-
 });
+// export default constMsg;

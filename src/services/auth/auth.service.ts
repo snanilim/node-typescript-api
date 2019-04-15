@@ -26,6 +26,7 @@ export const register = async (data) => {
         const token = generateToken(resSaveUser, resSaveUser.token);
         return token;
     } catch (error) {
+        console.log('errror', error);
         throw User.checkDuplicateEmail(error);
     }
 
