@@ -1,5 +1,5 @@
 import { MainRouter } from '../../core/app/main.router';
-import { register } from './auth.controller';
+import { register, login } from './auth.controller';
 
 export class AuthRouter extends MainRouter{
     constructor(){
@@ -8,5 +8,6 @@ export class AuthRouter extends MainRouter{
 
     onInit(): void {
         this.router.route('/register').post(register);
+        this.router.route('/login').post(login);
     }
 }

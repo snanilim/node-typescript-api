@@ -1,4 +1,4 @@
-export const constMsg = Object.freeze({
+export const const_msg = Object.freeze({
     SIGNUP: 'Well Done! User created successfully 🤗',
     CREATED: 'Well Done! You created successfully 🤗',
     CREATED_CODE: 201,

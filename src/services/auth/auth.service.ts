@@ -32,5 +32,14 @@ export const register = async (data) => {
     } catch (error) {
         throw User.checkDuplicateEmail(error);
     }
+};
 
+export const login = async (userData) => {
+    try {
+        const { user, accessToken } = await User.findAndGenerateToken(userData);
+        const token = generateToken(user, accessToken);
+        return { token, user: user.userInfo() };
+    } catch (error) {
+        throw User.checkDuplicateEmail(error);
+    }
 };
