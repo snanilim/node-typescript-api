@@ -15,4 +15,4 @@ export const const_msg = Object.freeze({
     EMAIL_IS_REQUIRED: 'A Email is required for generate token',
     EMAIL_EXIST: 'Email already exist',
 });
-// export default constMsg;
+// export default const_msg;

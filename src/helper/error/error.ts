@@ -2,7 +2,7 @@ import * as config from 'config';
 import { Winston, Logger } from '../../helper';
 import { resEnd } from '../logger/logger.util';
 import { APIError } from '../../core';
-import { constMsg } from '../utils/const-msg.util';
+import { const_msg } from '../utils/const-msg.util';
 
 const handeler = (err, req, res, next) => {
     const logger = new Logger('Error');
@@ -28,8 +28,8 @@ export const errorHandler = handeler;
 
 export const notFound = (req, res, next) => {
     const err = new APIError({
-        message: constMsg.NOT_FOUND,
-        status: constMsg.NOT_FOUND_CODE,
+        message: const_msg.NOT_FOUND,
+        status: const_msg.NOT_FOUND_CODE,
     });
     return handeler(err, req, res, next);
 };

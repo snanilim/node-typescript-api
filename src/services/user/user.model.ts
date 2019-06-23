@@ -3,7 +3,7 @@ import * as moment from 'moment';
 import * as mongoose from 'mongoose';
 import * as bcrypt from 'bcryptjs';
 import * as config from 'config';
-import { constMsg } from '../../helper';
+import { const_msg } from '../../helper';
 import { APIError } from '../../core';
 
 const schemaOptions = {
@@ -138,11 +138,11 @@ userSchema.statics = {
     async findAndGenerateToken(options) {
         try {
             const { email, password, refreshObj } = options;
-            if (!email) throw new APIError({ message: constMsg.EMAIL_IS_REQUIRED, status: constMsg.NOT_FOUND_CODE, });
+            if (!email) throw new APIError({ message: const_msg.EMAIL_IS_REQUIRED, status: const_msg.NOT_FOUND_CODE, });
             const user = await this.findOne({ email }).exec();
 
             const err = {
-                status: constMsg.UNAUTHORIZED_CODE,
+                status: const_msg.UNAUTHORIZED_CODE,
                 isPublic: true,
                 message: ''
             };
@@ -151,11 +151,11 @@ userSchema.statics = {
                 if (user && await user.comparePassword(password)) {
                     return { user, accessToken: user.token() };
                 }
-                err.message = constMsg.UNAUTHORIZED;
+                err.message = const_msg.UNAUTHORIZED;
             } else if (refreshObj && refreshObj.userEmail === email) {
                 return { user, accessToken: user.token() };
             } else {
-                err.message = constMsg.UNAUTHORIZED;
+                err.message = const_msg.UNAUTHORIZED;
             }
             throw new APIError(err);
         } catch (error) {
@@ -166,13 +166,13 @@ userSchema.statics = {
     checkDuplicateEmail(error) {
         if (error.code === 11000 && (error.name === 'BulkWriteError' || error.name === 'MongoError')) {
             throw new APIError({
-                message: constMsg.EMAIL_EXIST,
+                message: const_msg.EMAIL_EXIST,
                 error: {
                     field: 'email',
                     location: 'body',
-                    message: [constMsg.EMAIL_EXIST],
+                    message: [const_msg.EMAIL_EXIST],
                 },
-                status: constMsg.CONFLICT_CODE,
+                status: const_msg.CONFLICT_CODE,
                 stack: error.stack,
                 isPublic: true,
             });
