@@ -7,11 +7,13 @@ export declare class App {
     private readonly httpServer;
     private readonly logger;
     constructor(config: AppConfig);
+    bodyParser(): void;
     helmet(): void;
     morgan(): void;
     cors(): void;
+    apiPrefix(prefix: string): void;
     modulesInitializer(routers: Array<any>): void;
-    registerRoute(): Promise<void>;
+    registerRouter(): Promise<void>;
     init(): Promise<this>;
     listen(port?: number, ...args: any[]): Promise<Server>;
     protected listenAsync(port?: number, ...args: any[]): Promise<{}>;

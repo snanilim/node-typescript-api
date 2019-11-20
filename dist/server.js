@@ -8,19 +8,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const dotenv = require("dotenv");
+dotenv.config();
+const config = require("config");
 require("reflect-metadata");
 const core_1 = require("./core");
-const config_1 = require("./config");
 const app_config_1 = require("./core/app/app-config");
-const routes_1 = require("./modules/routes");
+const routes_1 = require("./services/routes");
 function bootstrap() {
     return __awaiter(this, void 0, void 0, function* () {
-        yield core_1.dbInitializer(Object.assign({}, config_1.dbConfig, { entities: [__dirname + '/**/*.entity{.ts,.js}'] }));
-        const app = new core_1.App(new app_config_1.AppConfig);
+        yield core_1.dbInitializer();
+        const app = new core_1.App(new app_config_1.AppConfig());
+        app.bodyParser();
         app.helmet();
-        app.morgan();
         app.cors();
-        app.modulesInitializer(routes_1.default);
+        app.morgan();
+        app.apiPrefix(`${config.get('version')}/api`);
+        app.modulesInitializer(routes_1.routes);
         yield app.listen();
     });
 }

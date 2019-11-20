@@ -13,9 +13,8 @@ const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
 const morgan = require("morgan");
+const bodyParser = require("body-parser");
 const helper_1 = require("../../helper");
-const path = require('path');
-const log = require('debug')(`log: ${path.basename(__filename)}`);
 class App {
     constructor(config) {
         this.config = config;
@@ -23,39 +22,49 @@ class App {
         this.app = express();
         this.httpServer = http_1.createServer(this.app);
     }
+    bodyParser() {
+        const parserList = {
+            jsonParser: bodyParser.json(),
+            urlencodedParser: bodyParser.urlencoded({ extended: false })
+        };
+        Object.keys(parserList).forEach((parser) => {
+            this.app.use(parserList[parser]);
+        });
+    }
     helmet() {
         this.app.use(helmet());
     }
     morgan() {
-        this.app.use(morgan('combined'));
         this.app.use(morgan('dev'));
     }
     cors() {
         this.app.use(cors());
     }
+    apiPrefix(prefix) {
+        this.config.setApiPrefix(prefix);
+    }
     modulesInitializer(routers) {
-        routers.forEach(router => {
-            this.config.addRouter(router);
+        routers.forEach((router) => {
+            this.config.setRouter(router);
         });
     }
-    registerRoute() {
+    registerRouter() {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log('registerRoute');
             const routers = this.config.getRouter();
+            const getPrefix = this.config.getApiPrefix();
+            const apiPrefix = helper_1.validatePath(getPrefix);
             routers.forEach((router) => {
-                const path = '/' + router.prefix;
-                console.log('path', path);
+                const path = apiPrefix + router.prefix;
                 this.app.use(path, router.router);
-                this.logger.log(`Configer route ${path}`);
+                this.logger.log(`Configer service ${path}`);
             });
         });
     }
     init() {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.registerRoute();
-            this.app.use((req, res, next) => {
-                console.log('not found');
-            });
+            yield this.registerRouter();
+            this.app.use(helper_1.notFound);
+            this.app.use(helper_1.errorHandler);
             return this;
         });
     }
@@ -64,14 +73,13 @@ class App {
             yield this.init();
             port = 3000;
             yield this.listenAsync(port, args);
-            log('Server start on port %o', `3000`);
             this.logger.log('server start at port 3000');
             return this.httpServer;
         });
     }
     listenAsync(port, ...args) {
         return __awaiter(this, void 0, void 0, function* () {
-            return new Promise(resolve => {
+            return new Promise((resolve) => {
                 const server = this.httpServer.listen(port, ...args, () => resolve(server));
             });
         });

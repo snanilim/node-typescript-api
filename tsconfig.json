@@ -14,7 +14,10 @@
         "outDir": "./dist",
         "typeRoots": [
             "node_modules/@types"
-        ]
+        ],
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "strict": true // This is useful too, to enable several strict checks
     },
     "include": [
         "src/**/*"

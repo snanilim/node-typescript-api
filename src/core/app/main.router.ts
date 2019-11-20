@@ -1,10 +1,10 @@
-import { Router } from 'express';
+import {Router} from 'express';
 import {
   isString,
   validatePath,
-  isFunction,
+  isFunction
 } from '../../helper/utils/shared.utils';
-import { Subscriber } from 'rxjs';
+import {Subscriber} from 'rxjs';
 
 export abstract class MainRouter {
   readonly prefix: string;
@@ -26,5 +26,4 @@ export abstract class MainRouter {
   }
 
   abstract onInit(): void;
-
 }

@@ -1,14 +1,15 @@
-import { MainRouter } from '../../core/app/main.router';
-import { get, post } from './user.controller';
+import {MainRouter} from '../../core/app/main.router';
+import {get, post} from './user.controller';
 
-export class UserRouter extends MainRouter{
-    constructor(){
-        super('user');
-    }
+export class UserRouter extends MainRouter {
+  constructor() {
+    super('user');
+  }
 
-    onInit(): void{
-        this.router.route('/')
-        .get(get)
-        .post(post);
-    }
+  onInit(): void {
+    this.router
+      .route('/')
+      .get(get)
+      .post(post);
+  }
 }

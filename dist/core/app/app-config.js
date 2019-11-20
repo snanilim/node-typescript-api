@@ -4,11 +4,17 @@ class AppConfig {
     constructor() {
         this.routers = [];
     }
-    addRouter(router) {
+    setRouter(router) {
         this.routers.push(router);
     }
     getRouter() {
         return this.routers;
+    }
+    setApiPrefix(prefix) {
+        this.apiPrefix = prefix;
+    }
+    getApiPrefix() {
+        return this.apiPrefix;
     }
 }
 exports.AppConfig = AppConfig;

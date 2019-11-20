@@ -16,5 +16,5 @@ export const isEmpty = (array): boolean => !(array && array.length > 0);
 
 export const isSymbol = (fn): fn is symbol => typeof fn === 'symbol';
 
-export const validatePath = path =>
+export const validatePath = (path) =>
   path.charAt(0) !== '/' ? '/' + path : path;

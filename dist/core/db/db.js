@@ -1,23 +1,24 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const typeorm_1 = require("typeorm");
-function dbInitializer(options) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const connecction = yield typeorm_1.createConnection(options)
-            .then((connection) => __awaiter(this, void 0, void 0, function* () {
-            console.log('MongoDB Database connected');
-        }))
-            .catch(error => console.log('error', error));
-        return connecction;
+const mongoose = require("mongoose");
+const config = require("config");
+const helper_1 = require("../../helper");
+exports.dbInitializer = () => {
+    const db = mongoose.connection;
+    const winstonInit = new helper_1.Winston();
+    const winston = winstonInit.logger('db.ts');
+    const mongo_uri = config.get('mongo_uri');
+    const logger = new helper_1.Logger('DB');
+    mongoose.connect(mongo_uri, { keepAlive: 1, useNewUrlParser: true });
+    db.on('open', (ref) => {
+        winston.info('Mongodb Connected Succesfully');
     });
-}
-exports.dbInitializer = dbInitializer;
+    db.on('error', (error) => {
+        winston.error(`MongoDB Connection was faield: ${error.message}`);
+        logger.error(`MongoDB Connection was faield: ${error.message}`);
+    });
+    if (config.util.getEnv('NODE_ENV') === 'development')
+        mongoose.set('debug', true);
+    return db;
+};
 //# sourceMappingURL=db.js.map

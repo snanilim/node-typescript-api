@@ -1,5 +1,8 @@
 export declare class AppConfig {
     private routers;
-    addRouter(router: any): void;
+    private apiPrefix;
+    setRouter(router: any): void;
     getRouter(): any[];
+    setApiPrefix(prefix: string): void;
+    getApiPrefix(): any;
 }

@@ -2,13 +2,13 @@
 // const { resEnd } = require('./util');
 
 export const res_send = (sendMsg, status, req, res, next) => {
-    const message = sendMsg;
-    message.result = 'success';
+  const message = sendMsg;
+  message.result = 'success';
 
-    // logger.success({ status, message, transactionID: req.uniqID });
+  // logger.success({ status, message, transactionID: req.uniqID });
 
-    res.status(status);
-    res.json(message);
-    // resEnd(req);
-    return res.end();
+  res.status(status);
+  res.json(message);
+  // resEnd(req);
+  return res.end();
 };
