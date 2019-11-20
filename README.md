@@ -3,16 +3,17 @@ node-typescript-api
 
 yarn install
 
-yarn start
+yarn build
 
-for development
+yarn lint
 
-yarn start:dev
+yarn dev
 
 # use
 
 1. concurrently
 2. eslint
+3. prettier
 
 # thank you link
 https://dev.to/robertcoopercode/using-eslint-and-prettier-in-a-typescript-project-53jb
