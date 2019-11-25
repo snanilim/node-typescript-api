@@ -7,7 +7,7 @@ export class Winston {
   private readonly logDir: string;
 
   constructor() {
-    this.logDir = process.env.LOG_DIR;
+    this.logDir = 'logs';
   }
 
   private errorTransport() {

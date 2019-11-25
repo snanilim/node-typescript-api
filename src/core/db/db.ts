@@ -11,7 +11,7 @@ export const dbInitializer = () => {
 
   mongoose.connect(mongo_uri, {keepAlive: 1, useNewUrlParser: true});
 
-  db.on('open', (ref) => {
+  db.on('open', () => {
     winston.info('Mongodb Connected Succesfully');
   });
 

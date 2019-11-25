@@ -16,7 +16,7 @@ class ErrorExtend extends Error {
 export class APIError extends ErrorExtend {
   constructor({
     message,
-    error = undefined,
+    error = {},
     status,
     isPublic = false,
     stack = undefined

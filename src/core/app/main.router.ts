@@ -1,10 +1,8 @@
 import {Router} from 'express';
 import {
   isString,
-  validatePath,
-  isFunction
+  validatePath
 } from '../../helper/utils/shared.utils';
-import {Subscriber} from 'rxjs';
 
 export abstract class MainRouter {
   readonly prefix: string;
@@ -22,7 +20,7 @@ export abstract class MainRouter {
         ? name
         : this.constructor.name.replace(/router/gi, '');
     if (name) return validatePath(name.toLocaleLowerCase());
-    return;
+    return 'none';
   }
 
   abstract onInit(): void;

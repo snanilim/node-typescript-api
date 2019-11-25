@@ -1,10 +1,10 @@
 import uuidv1 from 'uuid/v1';
-import {Winston, Logger} from '../../helper';
+import {Winston} from '../../helper';
 
 const winstonInit = new Winston();
 const winston = winstonInit.logger('Logger.Util');
 
-export const resStart = (req, res, next) => {
+export const resStart = (req, next) => {
   // console.log(req.get('User-Agent'));
   req.startTime = Date.now();
   req.uniqID = uuidv1();
@@ -18,7 +18,7 @@ export const resStart = (req, res, next) => {
   next();
 };
 
-export const resEnd = (req, res) => {
+export const resEnd = (req) => {
   const time = Date.now() - req.startTime;
   return winston.end({resTime: time, transactionID: req.uniqID});
 };

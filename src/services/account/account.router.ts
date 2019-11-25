@@ -8,12 +8,12 @@ export class AccountRouter extends MainRouter {
     this.jwtService = JwtService.getInstance();
   }
 
-  async token(req, res, next) {
+  async token(res) {
     const token = this.jwtService.sign({name: 'test'}, {subject: 'id'});
     return res.json(token);
   }
 
   onInit(): void {
-    this.router.post('/token', (req, res, next) => this.token(req, res, next));
+    this.router.post('/token', (req) => this.token(req));
   }
 }

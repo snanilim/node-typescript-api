@@ -1,5 +1,5 @@
 /* tslint:disable:no-var-requires */
-const {createLogger, format, transports} = require('winston');
+const {format} = require('winston');
 require('winston-daily-rotate-file');
 
 export const commonInfo = () => {

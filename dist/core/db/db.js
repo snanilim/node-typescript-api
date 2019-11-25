@@ -10,7 +10,7 @@ exports.dbInitializer = () => {
     const mongo_uri = config.get('mongo_uri');
     const logger = new helper_1.Logger('DB');
     mongoose.connect(mongo_uri, { keepAlive: 1, useNewUrlParser: true });
-    db.on('open', (ref) => {
+    db.on('open', () => {
         winston.info('Mongodb Connected Succesfully');
     });
     db.on('error', (error) => {

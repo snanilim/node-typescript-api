@@ -1,10 +1,10 @@
 import * as config from 'config';
-import {Winston, Logger} from '../../helper';
+import {Logger} from '../../helper';
 import {resEnd} from '../logger/logger.util';
 import {APIError} from '../../core';
 import {const_msg} from '../utils/const-msg.util';
 
-const handeler = (err, req, res, next) => {
+const handeler = (err, req, res) => {
   const logger = new Logger('Error');
   const errorMessage = {
     message: err.message,
@@ -24,16 +24,16 @@ const handeler = (err, req, res, next) => {
 
   res.status(err.status || 500);
   res.json(errorMessage);
-  resEnd(req, res);
+  resEnd(req);
   return res.end();
 };
 
 export const errorHandler = handeler;
 
-export const notFound = (req, res, next) => {
+export const notFound = (req, res) => {
   const err = new APIError({
     message: const_msg.NOT_FOUND,
     status: const_msg.NOT_FOUND_CODE
   });
-  return handeler(err, req, res, next);
+  return handeler(err, req, res);
 };

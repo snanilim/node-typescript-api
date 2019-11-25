@@ -5,7 +5,7 @@ import {jwtConfig} from '../../configer/jwt.config';
 export class JwtService {
   private static instance: JwtService;
 
-  constructor(private readonly options?: JwtOptions) {}
+  constructor(private readonly options: JwtOptions) {}
 
   static getInstance(): JwtService {
     if (!this.instance) {

@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 class AppConfig {
     constructor() {
         this.routers = [];
+        this.apiPrefix = '';
     }
     setRouter(router) {
         this.routers.push(router);

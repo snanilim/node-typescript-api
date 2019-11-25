@@ -11,9 +11,6 @@ import {
   notFound,
   errorHandler,
   validatePath,
-  isEmpty,
-  isConstructor,
-  isFunction
 } from '../../helper';
 
 export class App {

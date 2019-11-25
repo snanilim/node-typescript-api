@@ -7,6 +7,7 @@ class Logger {
     constructor(context) {
         this.context = context;
         this.isLogCall = false;
+        this.prevTime = 0;
     }
     log(message, context) {
         const { logger } = Logger;
