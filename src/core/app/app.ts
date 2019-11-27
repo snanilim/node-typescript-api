@@ -4,6 +4,7 @@ import * as helmet from 'helmet';
 import * as cors from 'cors';
 import * as morgan from 'morgan';
 import * as bodyParser from 'body-parser';
+import * as compression from 'compression';
 import {AppConfig} from './app-config';
 import {MainRouter} from './main.router';
 import {
@@ -45,6 +46,10 @@ export class App {
 
   cors() {
     this.app.use(cors());
+  }
+
+  compression() {
+    this.app.use(compression());
   }
 
   apiPrefix(prefix: string) {

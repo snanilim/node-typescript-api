@@ -1,24 +1,47 @@
-
 class Man {
-    // name: string
+    static sal : Number  = 1;
+    private name: String
     
-    constructor( name: Dis){
+    constructor( name: String){
         console.log(name)
-        // this.name = name
+        this.name = name
     }
-    hello(){
-        console.log(this.name)
+    hello(user){
+        console.log('aaa', this.name)
     }
 }
 
-class Dis{
+class Nilim extends Man{
+    private user: String
     constructor(){
-        console.log('done');
+        super('name')
+        // console.log('done', this.name);
+        // console.log('user', user);
         
     }
-    aaa(){
-
+    hello(user){
+        // console.log(this.user)
+        // super.hello(user)
     }
 }
 
-new Man(new Dis()).hello()
+class Employe{
+    // readonly name: String;
+    constructor(readonly name){
+        console.log('name', name);
+        
+    }
+    hello(user){
+        // console.log(this.user)
+        // super.hello(user)
+    }
+}
+console.log(Man.sal);
+
+let man : Man;
+man = new Man('nilim')
+let nilim = new Nilim()
+let employe = new Employe('rafid')
+// employe.name = 
+
+// nilim.hello('user')

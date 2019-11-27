@@ -2,6 +2,9 @@
 // const { resEnd } = require('./util');
 
 export const res_send = (sendMsg, status, res) => {
+  // console.log(req);
+  // console.log(next)
+  
   const message = sendMsg;
   message.result = 'success';
 

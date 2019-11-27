@@ -47,6 +47,6 @@ class Logger {
         process.stdout.write('\n');
     }
 }
-Logger.logger = Logger;
 exports.Logger = Logger;
+Logger.logger = Logger;
 //# sourceMappingURL=logger.js.map

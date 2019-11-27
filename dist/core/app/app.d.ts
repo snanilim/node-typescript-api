@@ -11,10 +11,11 @@ export declare class App {
     helmet(): void;
     morgan(): void;
     cors(): void;
+    compression(): void;
     apiPrefix(prefix: string): void;
     modulesInitializer(routers: Array<any>): void;
     registerRouter(): Promise<void>;
     init(): Promise<this>;
     listen(port?: number, ...args: any[]): Promise<Server>;
-    protected listenAsync(port?: number, ...args: any[]): Promise<{}>;
+    protected listenAsync(port?: number, ...args: any[]): Promise<unknown>;
 }
