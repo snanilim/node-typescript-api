@@ -1,14 +1,14 @@
-// const logger = require('../settings/winston')(__filename);
+import {Winston} from '../../helper';
 // const { resEnd } = require('./util');
 
 export const res_send = (sendMsg, status, res) => {
-  // console.log(req);
-  // console.log(next)
-  
+  const winstonInit = new Winston();
+  const winston = winstonInit.logger('response.ts');
+
   const message = sendMsg;
   message.result = 'success';
 
-  // logger.success({ status, message, transactionID: req.uniqID });
+  winston.info({status, message, transactionID: res.uniqID});
 
   res.status(status);
   res.json(message);

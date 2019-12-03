@@ -1,11 +1,14 @@
 import * as config from 'config';
-import {Logger} from '../../helper';
+import {Winston, Logger} from '../../helper';
 import {resEnd} from '../logger/logger.util';
 import {APIError} from '../../core';
 import {const_msg} from '../utils/const-msg.util';
 
 const handeler = (err, req, res) => {
   const logger = new Logger('Error');
+  const winstonInit = new Winston();
+  const winston = winstonInit.logger('response.ts');
+
   const errorMessage = {
     message: err.message,
     error: err.error,
@@ -17,6 +20,12 @@ const handeler = (err, req, res) => {
   }
 
   logger.error({
+    status: err.status || 500,
+    message: errorMessage,
+    transactionID: req.uniqID
+  });
+
+  winston.error({
     status: err.status || 500,
     message: errorMessage,
     transactionID: req.uniqID

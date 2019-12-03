@@ -33,14 +33,14 @@ class App {
             this.app.use(parserList[parser]);
         });
     }
-    helmet() {
-        this.app.use(helmet());
+    helmet(options) {
+        this.app.use(helmet(options));
     }
     morgan() {
-        this.app.use(morgan('dev'));
+        this.app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
     }
-    cors() {
-        this.app.use(cors());
+    cors(options) {
+        this.app.use(cors(options));
     }
     compression() {
         this.app.use(compression());
@@ -76,9 +76,9 @@ class App {
     listen(port, ...args) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.init();
-            port = 3000;
+            port = port || 3100;
             yield this.listenAsync(port, args);
-            this.logger.log('server start at port 3000');
+            this.logger.log(`server start at port ${port}`);
             return this.httpServer;
         });
     }

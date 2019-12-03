@@ -13,7 +13,7 @@ export class Logger implements LoggerInterface {
   isLogCall = false;
 
   constructor(private readonly context: string) {
-    this.prevTime = 0
+    this.prevTime = 0;
   }
 
   log(message: any, context?: string) {

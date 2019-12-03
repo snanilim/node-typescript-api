@@ -4,8 +4,8 @@ export class AppConfig {
   private routers: any[] = [];
   private apiPrefix: string;
 
-  constructor(){
-    this.apiPrefix = ''
+  constructor() {
+    this.apiPrefix = '';
   }
 
   setRouter(router: any): void {

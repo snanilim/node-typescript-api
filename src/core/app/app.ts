@@ -7,12 +7,7 @@ import * as bodyParser from 'body-parser';
 import * as compression from 'compression';
 import {AppConfig} from './app-config';
 import {MainRouter} from './main.router';
-import {
-  Logger,
-  notFound,
-  errorHandler,
-  validatePath,
-} from '../../helper';
+import {Logger, notFound, errorHandler, validatePath} from '../../helper';
 
 export class App {
   private readonly app: express.Express;
@@ -35,17 +30,20 @@ export class App {
     });
   }
 
-  helmet() {
-    this.app.use(helmet());
+  helmet(options: helmet.IHelmetConfiguration) {
+    this.app.use(helmet(options));
   }
 
   morgan() {
     // this.app.use(morgan('combined'));
-    this.app.use(morgan('dev'));
+    // this.app.use(morgan('dev'));
+    this.app.use(
+      morgan(':method :url :status :res[content-length] - :response-time ms')
+    );
   }
 
-  cors() {
-    this.app.use(cors());
+  cors(options?: cors.CorsOptions) {
+    this.app.use(cors(options));
   }
 
   compression() {
@@ -84,10 +82,10 @@ export class App {
 
   async listen(port?: number, ...args) {
     await this.init();
-    port = 3000;
+    port = port || 3100;
 
     await this.listenAsync(port, args);
-    this.logger.log('server start at port 3000');
+    this.logger.log(`server start at port ${port}`);
 
     return this.httpServer;
   }

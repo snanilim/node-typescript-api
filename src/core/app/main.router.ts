@@ -1,8 +1,5 @@
 import {Router} from 'express';
-import {
-  isString,
-  validatePath
-} from '../../helper/utils/shared.utils';
+import {isString, validatePath} from '../../helper/utils/shared.utils';
 
 export abstract class MainRouter {
   readonly prefix: string;
