@@ -4,7 +4,7 @@ import {resEnd} from '../logger/logger.util';
 import {APIError} from '../../core';
 import {const_msg} from '../utils/const-msg.util';
 
-const handeler = (err, req, res) => {
+const handeler = async (err, req, res) => {
   const logger = new Logger('Error');
   const winstonInit = new Winston();
   const winston = winstonInit.logger('response.ts');
@@ -12,6 +12,7 @@ const handeler = (err, req, res) => {
   const errorMessage = {
     message: err.message,
     error: err.error,
+    isOperational: err.isOperational !== undefined? err.isOperational : false,
     stack: err.stack
   };
 
@@ -19,7 +20,7 @@ const handeler = (err, req, res) => {
     delete errorMessage.stack;
   }
 
-  logger.error({
+  await logger.error({
     status: err.status || 500,
     message: errorMessage,
     transactionID: req.uniqID
@@ -30,6 +31,8 @@ const handeler = (err, req, res) => {
     message: errorMessage,
     transactionID: req.uniqID
   });
+
+  // winston.exitOnError = true
 
   res.status(err.status || 500);
   res.json(errorMessage);
@@ -42,7 +45,8 @@ export const errorHandler = handeler;
 export const notFound = (req, res) => {
   const err = new APIError({
     message: const_msg.NOT_FOUND,
-    status: const_msg.NOT_FOUND_CODE
+    status: const_msg.NOT_FOUND_CODE,
+    // isOperational: true
   });
   return handeler(err, req, res);
 };

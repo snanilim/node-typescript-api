@@ -18,7 +18,8 @@ export const dbInitializer = () => {
   db.on('error', (error) => {
     winston.error(`MongoDB Connection was faield: ${error.message}`);
     logger.error(`MongoDB Connection was faield: ${error.message}`);
-    // process.exit(-1);
+    // throw new Error(error)
+    process.exit(-1);
   });
 
   if (config.util.getEnv('NODE_ENV') === 'development')

@@ -16,6 +16,7 @@ exports.dbInitializer = () => {
     db.on('error', (error) => {
         winston.error(`MongoDB Connection was faield: ${error.message}`);
         logger.error(`MongoDB Connection was faield: ${error.message}`);
+        process.exit(-1);
     });
     if (config.util.getEnv('NODE_ENV') === 'development')
         mongoose.set('debug', true);
