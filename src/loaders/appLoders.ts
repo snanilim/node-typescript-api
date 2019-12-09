@@ -12,5 +12,6 @@ export const expressLoader = async () => {
   app.compression();
   app.apiPrefix(`${config.get('version')}/api`);
   app.modulesInitializer(routes);
+  app.swagger();
   await app.listen(config.get('port'));
 };

@@ -16,6 +16,8 @@ const cors = require("cors");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const compression = require("compression");
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.json");
 const helper_1 = require("../../helper");
 class App {
     constructor(config) {
@@ -65,11 +67,19 @@ class App {
             });
         });
     }
+    swagger() {
+        this.app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+    }
     init() {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.registerRouter();
             this.app.use(helper_1.notFound);
             this.app.use(helper_1.errorHandler);
+            process.on('unhandledRejection', (error) => { throw error; });
+            process.on('uncaughtException', (error) => {
+                if (!error.isOperational)
+                    process.exit(1);
+            });
             return this;
         });
     }

@@ -28,7 +28,7 @@ export class Winston {
       level: 'custom',
       format: formatInfo(fileName),
       transports: [this.errorTransport(), this.combineTransport()],
-      exitOnError: true // do not exit on handled exceptions
+      exitOnError: false // do not exit on handled exceptions
     });
   }
 }

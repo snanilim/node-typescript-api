@@ -21,7 +21,7 @@ yarn dev
 2. Use only the built-in Error object
 3. handle operational vs programmer errors by isOperational: true/false
 4. Handle errors centrally by APIError and handleerror
-5. 
+5. Catch unhandled promise rejections
 
 # thank you link
 https://dev.to/robertcoopercode/using-eslint-and-prettier-in-a-typescript-project-53jb

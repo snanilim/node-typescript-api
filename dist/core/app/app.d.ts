@@ -17,6 +17,7 @@ export declare class App {
     apiPrefix(prefix: string): void;
     modulesInitializer(routers: Array<any>): void;
     registerRouter(): Promise<void>;
+    swagger(): void;
     init(): Promise<this>;
     listen(port?: number, ...args: any[]): Promise<Server>;
     protected listenAsync(port?: number, ...args: any[]): Promise<unknown>;

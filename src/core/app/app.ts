@@ -5,6 +5,8 @@ import * as cors from 'cors';
 import * as morgan from 'morgan';
 import * as bodyParser from 'body-parser';
 import * as compression from 'compression';
+import * as swaggerUi from 'swagger-ui-express';
+import * as swaggerDocument from './swagger.json';
 import {AppConfig} from './app-config';
 import {MainRouter} from './main.router';
 import {Logger, notFound, errorHandler, validatePath} from '../../helper';
@@ -71,11 +73,22 @@ export class App {
     });
   }
 
+  swagger(){
+    this.app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+  }
+
   async init(): Promise<this> {
     await this.registerRouter();
-
+    
     this.app.use(notFound);
     this.app.use(errorHandler);
+
+    process.on('unhandledRejection', (error) => {throw error;});
+    
+    process.on('uncaughtException', (error: any) => {
+      if(!error.isOperational)
+        process.exit(1);
+    });
 
     return this;
   }
