@@ -1,14 +1,15 @@
 /* tslint:disable:no-var-requires */
 import {transports, createLogger} from 'winston';
 import 'winston-daily-rotate-file';
-import * as config from 'config';
+// import * as config from 'config';
 import {commonInfo, options, formatInfo} from './winston-config';
 
 export class Winston {
   private readonly logDir: string;
 
   constructor() {
-    this.logDir = config.get('logDir');
+    // this.logDir = config.get('logDir');
+    this.logDir = 'logs';
   }
 
   private errorTransport() {
