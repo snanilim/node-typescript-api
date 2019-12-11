@@ -83,12 +83,12 @@ export class App {
     this.app.use(notFound);
     this.app.use(errorHandler);
 
-    process.on('unhandledRejection', (error) => {throw error;});
+    // process.on('unhandledRejection', (error) => {throw error;});
     
-    process.on('uncaughtException', (error: any) => {
-      if(!error.isOperational)
-        process.exit(1);
-    });
+    // process.on('uncaughtException', (error: any) => {
+    //   if(!error.isOperational)
+    //     process.exit(1);
+    // });
 
     return this;
   }
