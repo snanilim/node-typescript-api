@@ -1,4 +1,4 @@
-// import * as config from 'config';
+import * as config from 'config';
 import {Winston, Logger} from '../../helper';
 import {resEnd} from '../logger/logger.util';
 import {APIError} from '../../core';
@@ -16,9 +16,9 @@ const handeler = async (err, req, res, _next) => {
     stack: err.stack
   };
 
-  // if (config.util.getEnv('NODE_ENV') !== 'development') {
-  //   delete errorMessage.stack;
-  // }
+  if (config.util.getEnv('NODE_ENV') !== 'development') {
+    delete errorMessage.stack;
+  }
 
   logger.error({
     status: err.status || 500,

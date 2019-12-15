@@ -1,24 +1,10 @@
-
-import {App} from '../src/core';
-import {routes} from '../src/services/routes';
-import {AppConfig} from '../src/core/app/app-config';
 import * as http from 'http';
 import * as assert from 'assert';
+// import {App} from '../src/core';
+// import {routes} from '../src/services/routes';
+// import {AppConfig} from '../src/core/app/app-config';
 
-export const expressLoader = async () => {
-    const app = new App(new AppConfig());
-    // app.bodyParser();
-    // app.helmet({noCache: true});
-    // app.cors();
-    // app.morgan();
-    // app.compression();
-    // app.apiPrefix(`${config.get('version')}/api`);
-    app.apiPrefix(`v1/api`);
-    app.modulesInitializer(routes);
-    // app.swagger();
-    // await app.listen(config.get('port'));
-    await app.listen(8000);
-  };
+import {expressLoader} from '../src/loaders/appLoders';
 
   describe("Index Test", () => {
     
