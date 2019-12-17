@@ -6,39 +6,9 @@
     "auditLog": "undefined/.a6fdfe600369179ee45892ed3b91d53a87fc8730-audit.json",
     "files": [
         {
-            "date": 1575979676616,
-            "name": "undefined/2019-12-10-18-combine.log",
-            "hash": "ceb660ca992c2bf555228a9ce43546fb"
-        },
-        {
-            "date": 1576040848210,
-            "name": "undefined/2019-12-11-11-combine.log",
-            "hash": "0706bab306f89e338b2d878c85e3959a"
-        },
-        {
-            "date": 1576052739819,
-            "name": "undefined/2019-12-11-14-combine.log",
-            "hash": "de25656750cf0d1b847cb008329b61b2"
-        },
-        {
-            "date": 1576064904698,
-            "name": "undefined/2019-12-11-17-combine.log",
-            "hash": "9a8db1e73668ce6f1600643ecc62d8b2"
-        },
-        {
-            "date": 1576066371082,
-            "name": "undefined/2019-12-11-18-combine.log",
-            "hash": "c15ae2f3c9ccb7786b1474c82a7bfa0a"
-        },
-        {
-            "date": 1576390467546,
-            "name": "undefined/2019-12-15-12-combine.log",
-            "hash": "9b3eed224f80f9ffe6628158c759a8dd"
-        },
-        {
-            "date": 1576393402654,
-            "name": "undefined/2019-12-15-13-combine.log",
-            "hash": "bdbf8d6a989d140fc4158b8ba4d6ddc1"
+            "date": 1576563901136,
+            "name": "undefined/2019-12-17-12-combine.log",
+            "hash": "b620ab1eac816661e7a154f7cfe881b2"
         }
     ]
 }

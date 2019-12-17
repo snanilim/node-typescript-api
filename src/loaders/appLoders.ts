@@ -2,6 +2,7 @@ import * as config from 'config';
 import {App} from '../core';
 import {AppConfig} from '../core/app/app-config';
 import {routes} from '../services/routes';
+import * as swaggerDocument from '../../swagger/swagger.json'
 
 export const expressLoader = async () => {
   const app = new App(new AppConfig());
@@ -12,6 +13,6 @@ export const expressLoader = async () => {
   app.compression();
   app.apiPrefix(`${config.get('version')}/api`);
   app.modulesInitializer(routes);
-  app.swagger();
+  app.swagger(swaggerDocument);
   await app.listen(config.get('port'));
 };

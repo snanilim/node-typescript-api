@@ -6,7 +6,6 @@ import * as morgan from 'morgan';
 import * as bodyParser from 'body-parser';
 import * as compression from 'compression';
 import * as swaggerUi from 'swagger-ui-express';
-import * as swaggerDocument from './swagger.json';
 import {AppConfig} from './app-config';
 import {MainRouter} from './main.router';
 import {Logger, notFound, errorHandler, validatePath} from '../../helper';
@@ -73,7 +72,7 @@ export class App {
     });
   }
 
-  swagger(){
+  swagger(swaggerDocument){
     this.app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
   }
 

@@ -13,6 +13,8 @@ export const const_msg = Object.freeze({
   BAD_REQUEST_CODE: 400,
   CONFLICT_CODE: 409,
   EMAIL_IS_REQUIRED: 'A Email is required for generate token',
-  EMAIL_EXIST: 'Email already exist'
+  EMAIL_EXIST: 'Email already exist',
+  VALIDATION_ERROR: 'Validation Error',
+  VALIDATION_ERROR_CODE: 422
 });
 // export default const_msg;

@@ -3,3 +3,4 @@ export * from './winston/winston';
 export * from './error/error';
 export * from './response/response';
 export * from './utils';
+export * from './validator/validator';
