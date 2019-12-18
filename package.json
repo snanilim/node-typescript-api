@@ -5,10 +5,10 @@
   "author": "snanilim <snanilim@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "tsc && node dist/server.js",
+    "start": "tsc && node dist/src/server.js",
     "build": "tsc",
     "lint": "eslint \"src/**/*.ts\"",
-    "dev": "concurrently --kill-others \"tsc -w\" \"nodemon dist/server.js\"",
+    "dev": "concurrently --kill-others \"tsc -w\" \"nodemon dist/src/server.js\"",
     "test": "jest --forceExit --coverage --verbose",
     "test-dev": "mocha --timeout 10000 -r ts-node/register test/**/*.test.ts"
   },

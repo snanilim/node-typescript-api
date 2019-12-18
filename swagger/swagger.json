@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "version": "1.0.0",
-        "title": "Seans-TypeScript-NodeJS-CRUD-REST-API-Boilerplate",
+        "title": "Node-Typescript-API-Boilerplate",
         "description": "A minimal and easy to follow example of what you need to create a CRUD style API in NodeJs using TypeScript",
         "license": {
             "name": "MIT",
@@ -21,8 +21,8 @@
     ],
     "tags": [
         {
-            "name": "Cats",
-            "description": "API for cats in the system"
+            "name": "Auths",
+            "description": "API for auths in the system"
         }
     ],
     "consumes": [
@@ -35,14 +35,14 @@
         "/v1/api/auth": {
             "get": {
                 "tags": [
-                    "Cats"
+                    "Auths"
                 ],
-                "summary": "Get all cats in system",
+                "summary": "Get all auths in system",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Cats"
+                            "$ref": "#/definitions/Auths"
                         }
                     }
                 }
@@ -51,16 +51,82 @@
         "/v1/api/auth/register": {
             "post": {
                 "tags": [
-                    "Cats"
+                    "Auths"
                 ],
-                "summary": "Create a new cat in system",
+                "summary": "Create a new auth in system",
                 "requestBody": {
-                    "description": "Cat Object",
+                    "description": "Auth Object",
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/definitions/Cat"
+                                "$ref": "#/definitions/Auth"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/v1/api/auth/login": {
+            "post": {
+                "tags": [
+                    "Auths"
+                ],
+                "summary": "Create a new auth in system",
+                "requestBody": {
+                    "description": "Auth Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Auth"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/v1/api/auth/refresh-token": {
+            "post": {
+                "tags": [
+                    "Refreshs"
+                ],
+                "summary": "Create a new auth in system",
+                "requestBody": {
+                    "description": "Auth Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Refresh"
                             }
                         }
                     }
@@ -90,30 +156,46 @@
                 }
             }
         },
-        "Cat": {
+        "Auth": {
             "type": "object",
             "properties": {
-                "genus": {
+                "email": {
                     "type": "string"
                 },
-                "name": {
-                    "type": "string"
-                },
-                "isHungry": {
-                    "type": "boolean"
-                },
-                "lastFedDate": {
+                "password": {
                     "type": "string"
                 }
             }
         },
-        "Cats": {
+        "Auths": {
             "type": "object",
             "properties": {
-                "cats": {
+                "auths": {
                     "type": "object",
                     "additionalProperties": {
-                        "$ref": "#/definitions/Cat"
+                        "$ref": "#/definitions/Auth"
+                    }
+                }
+            }
+        },
+        "Refresh": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "refreshToken": {
+                    "type": "string"
+                }
+            }
+        },
+        "Refreshes": {
+            "type": "object",
+            "properties": {
+                "auths": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/Refresh"
                     }
                 }
             }

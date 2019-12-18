@@ -29,7 +29,7 @@ export const register = async (data) => {
       password: data.password
     });
     const resSaveUser = await user.save();
-    const token = generateToken(resSaveUser, resSaveUser.token);
+    const token = generateToken(resSaveUser, resSaveUser.token());
     return token;
   } catch (error) {
     throw User.checkDuplicateEmail(error);
@@ -43,5 +43,23 @@ export const login = async (userData) => {
     return {token, user: user.userInfo()};
   } catch (error) {
     throw User.checkDuplicateEmail(error);
+  }
+};
+
+export const refresh = async ({ email, refreshToken }) => {
+  try {
+    console.log('email', email);
+    console.log('refresh', refreshToken);
+    
+    
+    const refreshObj = await RefreshToken.findOneAndRemove({
+      userEmail: email,
+      token: refreshToken,
+    });
+    console.log('refreshObj', refreshObj);
+    const { user, accessToken } = await User.findAndGenerateToken({ email, refreshObj });
+    return generateToken(user, accessToken);
+  } catch (error) {
+    throw error;
   }
 };

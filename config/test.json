@@ -2,6 +2,7 @@
     "port": 8000,
     "logDir": "logs",
     "version": "v1",
-    "jwtTimeExpire": 100,
+    "jwtTimeExpire": 10,
+    "refreshTokenExpire": 30,
     "dbName": "node-typescript-api"
 }

@@ -1,6 +1,7 @@
 import * as mongoose from 'mongoose';
 import * as crypto from 'crypto';
 import * as moment from 'moment';
+import * as config from 'config';
 
 const refreshTokenSchema = new mongoose.Schema({
   token: {
@@ -31,7 +32,7 @@ refreshTokenSchema.statics = {
     const userEmail = user.email;
     const token = `${userId}.${crypto.randomBytes(40).toString('hex')}`;
     const expires = moment()
-      .add(30, 'days')
+      .add(config.get('refreshTokenExpire'), 'days')
       .toDate();
     // eslint-disable-next-line no-use-before-define
     const tokenObj = new RefreshToken({

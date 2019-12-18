@@ -1,5 +1,5 @@
 import {MainRouter} from '../../core/app/main.router';
-import {get, register, login} from './auth.controller';
+import {get, register, login, refresh} from './auth.controller';
 import {schemaValidator} from '../../helper';
 import {authSchemas} from './auth.schemas';
 
@@ -12,5 +12,6 @@ export class AuthRouter extends MainRouter {
     this.router.route('/').get(get);
     this.router.route('/register').post(schemaValidator(authSchemas.register, 'body'), register);
     this.router.route('/login').post(login);
+    this.router.route('/refresh-token').post(refresh);
   }
 }

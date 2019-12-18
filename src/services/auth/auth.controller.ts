@@ -24,3 +24,13 @@ export const login = async (req, res, next) => {
     return next(error);
   }
 };
+
+
+export const refresh = async (req, res, next) => {
+  try {
+    const response = await service.refresh(req.body);
+    res_send(response, const_msg.SUCCESS_CODE, res);
+  } catch (error) {
+    return next(error);
+  }
+};
